@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Student Attendance Checker</h1>
+    
+    <div class="form-container">
+        <form id="attendanceForm" action="http://localhost:3000/api/uploadAndCalculate" method="POST" enctype="multipart/form-data">
+            <input id="fullName" type="text" name="fullName" placeholder="Full Name" required />
+            <input id="enrollmentNumber" type="text" name="enrollmentNumber" placeholder="Enrollment Number" required />
+            
+            <label for="attendanceImage">Upload Attendance Image or Document:</label>
+            <input id="attendanceImage" type="file" name="attendanceFile" accept="image/png, image/jpeg, application/pdf, application/msword" required />
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <p id="result"></p>
+
+    <script src="script.js"></script>
+</body>
+</html>
