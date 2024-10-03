@@ -18,7 +18,7 @@ const extractTextFromFile = async (filePath) => {
 
         try {
             await pdfPoppler.convert(filePath, options);
-            const imagePath = path.join(outputDir, `${outputBaseName}-1.png`); // Assuming first page is named like this
+            const imagePath = path.join(outputDir, `${outputBaseName}-1.png`); 
             return await Tesseract.recognize(imagePath, 'eng');
         } catch (error) {
             throw new Error(`Error converting PDF: ${error.message}`);
