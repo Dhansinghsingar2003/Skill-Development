@@ -62,7 +62,6 @@ exports.uploadFileAndCalculateAttendance = async (req, res) => {
             return res.status(404).json({ message: 'Student not found', fullName, enrollmentNumber });
         }
 
-        // Respond with the calculated attendance for the student
         res.json({
             message: 'File uploaded and attendance calculated!',
             attendance: studentAttendance
