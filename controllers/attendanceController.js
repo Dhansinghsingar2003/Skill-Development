@@ -2,12 +2,11 @@ const path = require('path');
 const Tesseract = require('tesseract.js');
 const pdfPoppler = require('pdf-poppler');
 
-// Function to extract text from the uploaded file (either PDF or image)
 const extractTextFromFile = async (filePath) => {
     const fileExt = path.extname(filePath).toLowerCase();
 
     if (fileExt === '.pdf') {
-        // Convert PDF to PNG images
+        
         const outputDir = path.dirname(filePath);
         const outputBaseName = path.basename(filePath, path.extname(filePath));
         const options = {
@@ -29,25 +28,23 @@ const extractTextFromFile = async (filePath) => {
     }
 };
 
-// Route to handle file upload and calculate student attendance
 exports.uploadFileAndCalculateAttendance = async (req, res) => {
     try {
         const file = req.file;
         const fullName = req.body.fullName;
         const enrollmentNumber = req.body.enrollmentNumber;
 
-        // Extract text from the uploaded file
+       
         const extractedText = await extractTextFromFile(file.path);
         const rawText = extractedText.data.text;
 
-        // Split the extracted text by lines and search for the student
         const lines = rawText.trim().split('\n');
         let studentAttendance = null;
 
-        // Assuming file structure has roll number, name, and attendance (P or A)
+
         for (const line of lines) {
             if (line.includes(enrollmentNumber) && line.includes(fullName)) {
-                const attendanceRecord = line.split(' ').slice(3); // Assuming attendance starts after the first 3 columns
+                const attendanceRecord = line.split(' ').slice(3); 
                 const presentCount = attendanceRecord.filter(status => status.toUpperCase() === 'P').length;
                 const absentCount = attendanceRecord.filter(status => status.toUpperCase() === 'A').length;
 
