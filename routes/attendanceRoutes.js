@@ -5,7 +5,6 @@ const attendanceController = require('../controllers/attendanceController');
 
 const router = express.Router();
 
-// Configure multer for file uploads
 const allowedTypes = /jpeg|jpg|png|pdf|doc|docx|txt/;
 const uploadMiddleware = multer({
     storage: multer.diskStorage({
@@ -26,7 +25,6 @@ const uploadMiddleware = multer({
     }
 });
 
-// Define route for file upload and student attendance calculation
 router.post('/uploadAndCalculate', uploadMiddleware.single('attendanceFile'), attendanceController.uploadFileAndCalculateAttendance);
 
 module.exports = router;
